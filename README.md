@@ -83,49 +83,46 @@ graph TD
     %% Styling
     classDef power fill:#e74c3c,stroke:#c0392b,stroke-width:2px,color:#fff;
     classDef esp fill:#2980b9,stroke:#2c3e50,stroke-width:2px,color:#fff;
-    classDef module fill:#27ae60,stroke:#2ecc71,stroke-width:2px,color:#fff;
-    classDef relay fill:#f39c12,stroke:#d35400,stroke-width:2px,color:#fff;
-    classDef boiler fill:#7f8c8d,stroke:#2c3e50,stroke-width:2px,color:#fff;
+    classDef mod fill:#27ae60,stroke:#2ecc71,stroke-width:2px,color:#fff;
+    classDef rel fill:#f39c12,stroke:#d35400,stroke-width:2px,color:#fff;
+    classDef boil fill:#7f8c8d,stroke:#2c3e50,stroke-width:2px,color:#fff;
 
     %% Nodes
     MAINS["🔌 240V AC Mains"]:::power
-    HLK["⚡ HLK-5M03 (3.3V Step-Down)"]:::power
-    
+    HLK["⚡ HLK-5M03 3.3V Step-Down"]:::power
     ESP["🧠 ESP32-WROOM-32D"]:::esp
-    
-    BMP["🌡️ BMP280 Sensor"]:::module
-    OLED["🖥️ 1.3' OLED Display"]:::module
-    
-    RELAY["🧲 3.3V Relay Module (Low Level Trigger)"]:::relay
-    BOILER["🔥 Boiler / Caldaia"]:::boiler
+    BMP["🌡️ BMP280 Sensor"]:::mod
+    OLED["🖥️ 1.3 inch OLED Display"]:::mod
+    RELAY["🧲 3.3V Relay Module"]:::rel
+    BOILER["🔥 Boiler"]:::boil
 
-    %% Power Connections (240V)
-    MAINS -->|L & N| HLK
+    %% 240V Connection
+    MAINS -->|L and N| HLK
 
-    %% Power Connections (3.3V)
-    HLK -->|+3.3V DC| ESP
+    %% 3.3V Power Connections
+    HLK -->|Plus 3.3V DC| ESP
     HLK -.->|GND| ESP
     
-    HLK -->|+3.3V DC| RELAY
+    HLK -->|Plus 3.3V DC| RELAY
     HLK -.->|GND| RELAY
     
-    HLK -->|+3.3V DC| BMP
+    HLK -->|Plus 3.3V DC| BMP
     HLK -.->|GND| BMP
     
-    HLK -->|+3.3V DC| OLED
+    HLK -->|Plus 3.3V DC| OLED
     HLK -.->|GND| OLED
 
     %% Data Connections
     ESP -->|GPIO 26| RELAY
     
-    ESP -->|GPIO 21 (SDA)| BMP
-    ESP -->|GPIO 22 (SCL)| BMP
+    ESP -->|GPIO 21 SDA| BMP
+    ESP -->|GPIO 22 SCL| BMP
     
-    ESP -->|GPIO 33 (SDA)| OLED
-    ESP -->|GPIO 32 (SCL)| OLED
+    ESP -->|GPIO 33 SDA| OLED
+    ESP -->|GPIO 32 SCL| OLED
 
     %% Physical Output
-    RELAY ===|COM & NO (Dry Contacts)| BOILER
+    RELAY ===|COM and NO| BOILER
 ```
 
 ## 🚧 Known Issues & Future Improvements
