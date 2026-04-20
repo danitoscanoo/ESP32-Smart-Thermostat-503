@@ -79,7 +79,7 @@ Ensure you have the Arduino IDE installed along with the **ESP32 Board Manager**
 The diagram below illustrates the exact wiring of the 3.3V ecosystem. Notice how the I2C lines are split into two separate buses to prevent data collisions between the OLED and the BMP280.
 
 ```mermaid
-graph TD
+graph LR
     %% Styling
     classDef power fill:#e74c3c,stroke:#c0392b,stroke-width:2px,color:#fff;
     classDef esp fill:#2980b9,stroke:#2c3e50,stroke-width:2px,color:#fff;
